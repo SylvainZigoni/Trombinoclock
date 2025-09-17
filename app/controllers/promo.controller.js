@@ -14,12 +14,12 @@ async function getPromos() {
 }
 
 async function getPromoById(pId){
-    console.log(pId);
+
     const results = await client.query(`
         SELECT *
         FROM promo
         WHERE id = ${pId};`);
-    return results.rows
+    return results.rows[0]
 }
 
 async function getStudentByPromoId(pId){
@@ -27,7 +27,7 @@ async function getStudentByPromoId(pId){
         SELECT *
         FROM student
         WHERE promo_id = ${pId};`);
-    return results.rows[0]
+    return results.rows
 }
 
 
@@ -36,7 +36,6 @@ async function getStudentByPromoId(pId){
 const promoController = {
   async listPromos(req, res) {
     const promos =  await getPromos();
-    console.log(promos)
     res.render('promos', {
       // Je passe les données à la vue
       // Je vais pouvoir récupérer une variable `promos` dans ma vue `promos.ejs`
@@ -56,7 +55,7 @@ const promoController = {
       res.status(404).send('Cette promo n\'existe pas');
       return;
     }
-    console.log(promo);
+
     res.render('promo', {
       promo
     });
@@ -64,7 +63,7 @@ const promoController = {
   async listStudents(req, res) {
     // Je vais devoir récupérer la promo correspondant à l'id dans l'URL 
     // ainsi que la liste des étudiants de cette promo
-    console.log(req.params.id);
+
     const promoId = req.params.id;
     // Je vais chercher dans mon tableau de promos, celle avec l'id `promoId`
     const promo = await getPromoById(Number(promoId));
