@@ -1,11 +1,13 @@
 <%- include('partials/header') %>
-<h1>Promo : <%= promo.name %></h1>
 
-    
-<p>Github : <a href="<%= promo.github_organization %>"><%= promo.github_organization %></a></p>
+
+<h1>Promo : <%= promo[0].name %></h1>
+
+
+<p>Github : <a href="<%= promo[0].github_organization %>"><%= promo[0].github_organization %></a></p>
 <nav>
     <ul>
-        <li><a href="/promos/<%= promo.id %>/students">Liste des étudiants</a></li>
+        <li><a href="/promos/<%= promo[0].id %>/students">Liste des étudiants</a></li>
         <li><a href="promo_edit.html">Modifier la promo</a></li>
     </ul>
 </nav>
