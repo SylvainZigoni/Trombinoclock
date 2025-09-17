@@ -1,0 +1,13 @@
+<%- include('partials/header') %>
+<h1>Liste des promos</h1>
+
+<!-- Astuce pour voir le contenu de notre variable `promos` -->
+<!-- <%= JSON.stringify(promos, null, 2) %> -->
+<ul class="cards">
+    <% promos.forEach(promo => { %>
+        <!-- `/promos/<%= promo.id %>` va permettre de générer le lien vers la page de détail pour chaque promo -->
+         <!-- Par exemple `/promos/1` ou `/promos/2` -->
+        <li class="card card--label"><a href="/promos/<%= promo.id %>"><%= promo.name %></a></li>
+    <% }) %>
+</ul>
+<%- include('partials/footer') %>
