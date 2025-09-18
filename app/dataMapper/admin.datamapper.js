@@ -10,6 +10,17 @@ const adminMapper = {
 		});
 		return results.rows[0];
 	},
+
+	async addStudent(pFirstname, pLastname, pGithubName, pPromo) {
+		const results = await client.query({
+			text: `INSERT INTO student (first_name, last_name, github_username, promo_id
+                )
+            VALUES($1, $2, $3, $4)
+            RETURNING *;`,
+			values: [pFirstname, pLastname, pGithubName, pPromo],
+		});
+		return results.rows[0];
+	},
 };
 
 export default adminMapper;
