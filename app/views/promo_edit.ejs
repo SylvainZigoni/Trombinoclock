@@ -1,0 +1,22 @@
+<%- include('partials/header') %>
+<h1>Ajouter une promo : </h1>
+
+<form method="POST">
+    <p>
+        <label for="name">Nom</label>
+        <input type="text" id="name" name="name">
+    </p>
+    <p>
+        <label for="github_organization">github organization</label>
+        <input type="url" id="github_organization" name="github_organization">
+    </p>
+    <p>
+        <button>Valider</button>
+    </p>
+</form>
+
+<% if (typeof github_organization !== 'undefined') { %>
+<h2>La promotion <%= name %> à bien été ajoutée</h2>
+<% } %>
+
+<%- include('partials/footer') %>

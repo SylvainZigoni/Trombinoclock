@@ -51,7 +51,12 @@ WHERE id = 5;
 
 -- Supprimer la promo 123
 
+Il faut d'abord supprimer les student de la promo 123. Sinon impossible de supprimer la promo
+
 ```sql
+DELETE FROM student
+WHERE promo_id = 123
+
 DELETE FROM promo
 WHERE id = 123;
 ```
