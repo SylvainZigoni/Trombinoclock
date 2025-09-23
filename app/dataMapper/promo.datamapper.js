@@ -4,8 +4,12 @@ const promoDataMapper = {
 	async getPromos() {
 		const results = await client.query({
 			text: `
-                SELECT *
-                FROM promo;`,
+                SELECT promo.*,
+                COUNT(student.*) AS student_count
+                FROM promo
+                JOIN student ON promo.id = student.promo_id
+                GROUP BY promo.id
+                ORDER BY promo.id;`,
 		});
 		return results.rows;
 	},
@@ -13,9 +17,22 @@ const promoDataMapper = {
 	async getPromoById(pId) {
 		const results = await client.query({
 			text: `
-                SELECT *
+                SELECT promo.*,
+                JSON_AGG(
+                    JSON_BUILD_OBJECT(
+                        'id', student.id,
+                        'first_name', student.first_name,
+                        'last_name', student.last_name,
+                        'github_username', student.github_username,
+                        'profile_picture_url', student.profile_picture_url
+                    )
+                ) as students
                 FROM promo
-                WHERE id = $1;`,
+                JOIN student ON promo.id = student.promo_id
+                WHERE promo.id = $1
+                GROUP BY
+                    promo.id,
+                    student.id;`,
 			values: [pId],
 		});
 		return results.rows[0];

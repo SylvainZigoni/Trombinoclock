@@ -60,10 +60,9 @@ const promoController = {
                 return;
             }
 
-            const studentsFiltered = await promoDataMapper.getStudentByPromoId(Number(promoId));
+            // const studentsFiltered = await promoDataMapper.getStudentByPromoId(Number(promoId));
             res.render('students', {
-                promo,
-                students: studentsFiltered
+                promo
             });
         } catch (error) {
             console.error('Erreur lors de la récupération des students ou promos');

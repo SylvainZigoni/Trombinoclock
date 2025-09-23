@@ -6,7 +6,7 @@
         <label for="promo">Promo</label>
         <select name="promo" id="promo">
             <% for( const promo of promos  ) { %>
-            <option value="<%= promo.id %>"><%= promo.name %></option>
+            <option value="<%= promo.id %>"><%= promo.name %> (<%= promo.student_count %>)</option>
             <% } %>
         </select>
     </p>

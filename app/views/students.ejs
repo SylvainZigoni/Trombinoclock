@@ -3,7 +3,7 @@
 
 <h1>Liste des étudiants de la promo : <%= promo.name %></h1>
 <ul class="cards">
-    <% students.forEach(student => { %>
+    <% promo.students.forEach(student => { %>
     <li class="card">
         <a href="student.html">
             <figure>
