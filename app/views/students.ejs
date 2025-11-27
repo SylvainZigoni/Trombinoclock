@@ -3,7 +3,9 @@
 
 <h1>Liste des étudiants de la promo : <%= promo.name %></h1>
 <ul class="cards">
-    <% promo.students.forEach(student => { %>
+
+    <% for (student of students) { %>
+
     <li class="card">
         <a href="student.html">
             <figure>
@@ -12,7 +14,7 @@
             </figure>
         </a>
     </li>
-    <% }) %>
+    <% } %>
 </ul>
 
 
